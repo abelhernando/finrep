@@ -1,6 +1,7 @@
 import React = require("react");
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
+import styles from "./charts.module.scss";
 
 type DoughnutChartProps = {
     data: { [key: string]: number };
@@ -35,10 +36,22 @@ export function DoughnutChart({ data }: DoughnutChartProps): JSX.Element {
             },
         ],
     };
-
+    const options = {
+        plugins: {
+            datalabels: {
+                color: "white", // Color de los números
+                font: {
+                    weight: "bold", // Puedes personalizar el estilo de fuente
+                },
+                formatter: (value, context) => {
+                    return `${value}%`; // Puedes personalizar cómo se muestra el valor
+                },
+            },
+        },
+    };
     return (
-        <div>
-            <Doughnut data={_data} />
+        <div className={styles.doughnutChartContainer}>
+            <Doughnut data={_data} options={options} />
         </div>
     );
 }

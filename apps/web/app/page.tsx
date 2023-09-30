@@ -15,6 +15,9 @@ import useScroll from "../hooks/scroller";
 
 /**
  * 1. finnish the data
+ *      - add type in %
+ *      - show the tick in the chart
+ *      - format names in the charts
  * 2. focus in the distribution of the code
  * 3. focus in the layout
  * 4. check styles
@@ -42,6 +45,17 @@ export default function Page(): JSX.Element {
 
     return (
         <main className={`${styles.main} scroll-smooth`}>
+            <img
+                aria-hidden="true"
+                width="2712"
+                height="2712"
+                className="position-absolute top-0 right-0 height-auto col-11 events-none"
+                loading="lazy"
+                decoding="async"
+                src="/bg-stars-1.webp"
+                style={{ position: "absolute", zIndex: -1, top: 0 }}
+            ></img>
+
             <div
                 className="transition-opacity duration-500 ease-in-out"
                 style={{ opacity: fadeIn }}
@@ -55,7 +69,7 @@ export default function Page(): JSX.Element {
                 >
                     <AnimatedArrow
                         onClick={() => {
-                            scrollTo({ top: 800, behavior: "smooth" });
+                            scrollTo({ top: 1200, behavior: "smooth" });
                         }}
                     />
                 </div>
@@ -72,7 +86,7 @@ export default function Page(): JSX.Element {
                     <Gradient className={styles.gradientContainer} conic />
                     {scrollY >= 400 && (
                         <>
-                            <section className="flex flex-row">
+                            <section className="flex flex-row gap-12">
                                 <DoughnutChart data={data.distributionByType} />
                                 <div>
                                     <BarChart

@@ -15,6 +15,7 @@ import {
 } from "chart.js";
 import React = require("react");
 import { Bar } from "react-chartjs-2";
+import styles from "./charts.module.scss";
 
 Chart.register(
     LineElement,
@@ -55,21 +56,23 @@ type RadarAreaChartProps = {
 export function BarChart({ data }: RadarAreaChartProps): JSX.Element {
     const datasets = [
         {
-            // label: data.name,
-            label: Object.keys(data),
+            label: Object.keys(data).map((d) => Translations[d]),
             data: Object.values(data),
-            // data: data.competences.map((c) => LevelValues[c.level]),
-            backgroundColor: "rgb(42, 76, 170, 0.2)",
-            borderColor: "#2a4caa",
-            pointBackgroundColor: "#2a4caa",
+            backgroundColor: "#a853ba",
+            borderColor: "#a853ba",
+            pointBackgroundColor: "#a853ba",
             pointBorderColor: "#fff",
             pointHoverBackgroundColor: "#fff",
-            pointHoverBorderColor: "#2a4caa",
+            pointHoverBorderColor: "#a853ba",
         },
     ];
 
+    // #2a8af6 0deg,
+    // #a853ba 180deg,
+    // #e92a67 360deg
+
     const _data = {
-        labels: Object.keys(data),
+        labels: Object.keys(data).map((d) => Translations[d]),
         datasets,
     };
 
@@ -87,14 +90,13 @@ export function BarChart({ data }: RadarAreaChartProps): JSX.Element {
             tooltip: {
                 callbacks: {
                     label: (tooltipItem) => {
-                        // const level = Object.keys(Translations).find((key) => {
-                        //     console.log("key:", key, tooltipItem.label);
-                        //     return Translations[key] === tooltipItem.label;
-                        // });
-                        // console.log("level:", level);
-                        return `${
-                            Translations[tooltipItem.label]
-                        }: ${parseFloat(tooltipItem.raw)}`;
+                        console.log(
+                            "options.plugins.tooltip.callbacks.tooltipItem:",
+                            tooltipItem,
+                        );
+                        return `${tooltipItem.label}: ${parseFloat(
+                            tooltipItem.raw,
+                        )}`;
                     },
                 },
             },
@@ -102,7 +104,7 @@ export function BarChart({ data }: RadarAreaChartProps): JSX.Element {
     };
 
     return (
-        <div>
+        <div className={styles.barChartContainer}>
             <Bar data={_data as any} options={options} />
         </div>
     );

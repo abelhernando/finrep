@@ -1,8 +1,8 @@
-/* Gradients */
 .gradient {
     position: absolute;
     mix-blend-mode: normal;
     will-change: filter;
+    z-index: -1;
 }
 
 .gradientSmall {

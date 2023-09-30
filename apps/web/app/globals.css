@@ -36,7 +36,7 @@ body {
 
 body {
     overflow-y: auto;
-    min-height: 150vh;
+    min-height: 192vh;
     color: rgb(var(--foreground-rgb));
     background: linear-gradient(
             to bottom,

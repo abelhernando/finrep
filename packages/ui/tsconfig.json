@@ -4,9 +4,10 @@
     },
     "include": [
         ".",
-        "./src/**/*.ts", // Patrón para archivos TypeScript
-        "./src/**/*.tsx", // Patrón para archivos TypeScript con JSX
-        "./src/**/*.scss" // Patrón para archivos SCSS
+        "./src/**/*.ts",
+        "./src/**/*.tsx",
+        "./src/**/*.css",
+        "./src/**/*.scss"
     ],
     "exclude": ["dist", "build", "node_modules"]
 }
