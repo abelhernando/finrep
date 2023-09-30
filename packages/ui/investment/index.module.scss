@@ -1,0 +1,34 @@
+.container {
+    h3 {
+        font-size: 30px;
+        font-weight: bold;
+    }
+}
+
+.balance {
+    padding: 6px;
+    color: white;
+    width: fit-content;
+    border-radius: 8px;
+    background-color: green;
+}
+
+.chartContainer {
+    width: 260px;
+    // height: 50px;
+}
+
+.green {
+    color: green;
+}
+
+.red {
+    color: red;
+    :global(.balanceTag) {
+        background-color: red;
+    }
+}
+
+.values {
+    width: 100px;
+}

@@ -66,7 +66,6 @@ export class GetFinanceIndicatorsByUser implements UseCase {
                 distributionByEntity.getValues(),
             ),
             summary: Object.fromEntries(summary.getValues()),
-            data,
         };
     }
 }

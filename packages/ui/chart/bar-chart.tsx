@@ -51,13 +51,14 @@ enum Translations {
 
 type RadarAreaChartProps = {
     data: { [key: string]: number };
+    title?: string;
 };
 
-export function BarChart({ data }: RadarAreaChartProps): JSX.Element {
+export function BarChart({ data, title }: RadarAreaChartProps): JSX.Element {
     const datasets = [
         {
             label: Object.keys(data).map((d) => Translations[d]),
-            data: Object.values(data),
+            data: Object.values(data).map((val) => val / 1000000),
             backgroundColor: "#a853ba",
             borderColor: "#a853ba",
             pointBackgroundColor: "#a853ba",
@@ -66,10 +67,6 @@ export function BarChart({ data }: RadarAreaChartProps): JSX.Element {
             pointHoverBorderColor: "#a853ba",
         },
     ];
-
-    // #2a8af6 0deg,
-    // #a853ba 180deg,
-    // #e92a67 360deg
 
     const _data = {
         labels: Object.keys(data).map((d) => Translations[d]),
@@ -82,6 +79,12 @@ export function BarChart({ data }: RadarAreaChartProps): JSX.Element {
                 suggestedMin: 0,
                 suggestedMax: 6,
             },
+            x: {
+                ticks: { color: "white" },
+            },
+            y: {
+                ticks: { color: "white" },
+            },
         },
         plugins: {
             legend: {
@@ -90,13 +93,12 @@ export function BarChart({ data }: RadarAreaChartProps): JSX.Element {
             tooltip: {
                 callbacks: {
                     label: (tooltipItem) => {
-                        console.log(
-                            "options.plugins.tooltip.callbacks.tooltipItem:",
-                            tooltipItem,
-                        );
                         return `${tooltipItem.label}: ${parseFloat(
                             tooltipItem.raw,
-                        )}`;
+                        ).toLocaleString(undefined, {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                        })} M`;
                     },
                 },
             },
@@ -105,6 +107,7 @@ export function BarChart({ data }: RadarAreaChartProps): JSX.Element {
 
     return (
         <div className={styles.barChartContainer}>
+            {title && <h2 className="text-center">{title}</h2>}
             <Bar data={_data as any} options={options} />
         </div>
     );

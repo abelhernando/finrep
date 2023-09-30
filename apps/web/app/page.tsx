@@ -13,21 +13,13 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import useScroll from "../hooks/scroller";
 
-/**
- * 1. finnish the data
- *      - add type in %
- *      - show the tick in the chart
- *      - format names in the charts
- * 2. focus in the distribution of the code
- * 3. focus in the layout
- * 4. check styles
- * 5. add animations
- */
 export default function Page(): JSX.Element {
     const [data, setData] = useState<any>(null);
     const scrollY = useScroll();
 
     useEffect(() => {
+        scrollTo({ top: 0, behavior: "smooth" });
+
         const API_URL = "http://localhost:3001";
         axios
             .get<any[]>(`${API_URL}/finance`)
@@ -90,15 +82,18 @@ export default function Page(): JSX.Element {
                                 <DoughnutChart data={data.distributionByType} />
                                 <div>
                                     <BarChart
+                                        title="Inversion by Currency"
                                         data={data.distributionByCurrency}
                                     />
                                     <BarChart
+                                        title="Inversion by Entity"
                                         data={data.distributionByEntity}
                                     />
                                 </div>
                             </section>
 
                             <section className="w-full ">
+                                <h2 className="text-center">Summary</h2>
                                 <Table data={data.summary} />
                             </section>
                         </>

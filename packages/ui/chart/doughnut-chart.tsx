@@ -2,20 +2,25 @@ import React = require("react");
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import styles from "./charts.module.scss";
+import { Translations } from "../table";
 
 type DoughnutChartProps = {
     data: { [key: string]: number };
 };
 
 export function DoughnutChart({ data }: DoughnutChartProps): JSX.Element {
+    console.log("data:", data);
+    const total = Object.values(data).reduce((acc, curr) => acc + curr, 0);
     ChartJS.register(ArcElement, Tooltip, Legend);
 
     const _data = {
-        labels: Object.keys(data),
+        labels: Object.keys(data).map((key) => Translations[key]),
         datasets: [
             {
-                label: "# of Inversions by type",
-                data: Object.values(data),
+                label: "% of Inversions by type",
+                data: Object.values(data).map((val) =>
+                    ((val / total) * 100).toFixed(2),
+                ),
                 backgroundColor: [
                     "rgba(255, 99, 132, 0.2)",
                     "rgba(54, 162, 235, 0.2)",
@@ -37,20 +42,21 @@ export function DoughnutChart({ data }: DoughnutChartProps): JSX.Element {
         ],
     };
     const options = {
-        plugins: {
-            datalabels: {
-                color: "white", // Color de los números
-                font: {
-                    weight: "bold", // Puedes personalizar el estilo de fuente
-                },
-                formatter: (value, context) => {
-                    return `${value}%`; // Puedes personalizar cómo se muestra el valor
-                },
-            },
-        },
+        // datalabels: {
+        //     color: "white",
+        //     font: {
+        //         weight: "bold",
+        //     },
+        //     formatter: (value, context) => {
+        //         console.log("value:", value);
+        //         return `${value}%`;
+        //     },
+        // },
     };
+
     return (
         <div className={styles.doughnutChartContainer}>
+            <h2 className="text-center">% of Inversion by Type</h2>
             <Doughnut data={_data} options={options} />
         </div>
     );

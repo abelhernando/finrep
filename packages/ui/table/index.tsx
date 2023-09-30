@@ -1,6 +1,6 @@
 import React = require("react");
 
-enum Translations {
+export enum Translations {
     EUR = "Euro",
     USD = "United States Dollars",
     HKD = "Hong Kong Dollars",
@@ -15,20 +15,14 @@ enum Translations {
     FI = "Fondos de Inversión",
     O = "Opciones",
     VI = "Valores Inmobiliarios",
+    costs = "Total Costs",
+    gains = "Total Gains",
+    shares = "# of Shares",
 }
 
 type TableProps = {
     data: { [key: string]: number };
 };
-
-/**
- * Do summary:
- *
- * every chart in the table.
- * some media values in a global scope
- * may be other values to consider
- *
- */
 
 export function Table({ data }: TableProps): JSX.Element {
     console.log("data:", data);
@@ -45,7 +39,7 @@ export function Table({ data }: TableProps): JSX.Element {
                             <thead className="bg-slate-50 dark:bg-slate-700">
                                 <tr>
                                     <th className="w-1/2 border border-slate-300 dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-left">
-                                        Media
+                                        Key
                                     </th>
                                     <th className="w-1/2 border border-slate-300 dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-left">
                                         Value
@@ -53,30 +47,22 @@ export function Table({ data }: TableProps): JSX.Element {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td className="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
-                                        Profit
-                                    </td>
-                                    <td className="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
-                                        {data.gains}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
-                                        Costs
-                                    </td>
-                                    <td className="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
-                                        {data.costs}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
-                                        Shares
-                                    </td>
-                                    <td className="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
-                                        {data.shares}
-                                    </td>
-                                </tr>
+                                {Object.keys(data).map((key) => (
+                                    <tr key={key}>
+                                        <td className="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
+                                            {Translations[key]}
+                                        </td>
+                                        <td className="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
+                                            {data[key].toLocaleString(
+                                                undefined,
+                                                {
+                                                    minimumFractionDigits: 2,
+                                                    maximumFractionDigits: 2,
+                                                },
+                                            )}
+                                        </td>
+                                    </tr>
+                                ))}
                             </tbody>
                         </table>
                     </div>
