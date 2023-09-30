@@ -16,9 +16,11 @@ export class GetFinanceIndicatorsByUser implements UseCase {
         const distributionByCurrency = new Indicator();
         const distributionByType = new Indicator();
         const distributionByEntity = new Indicator();
+        const summary = new Indicator();
 
         let totalCosts = 0;
         let totalGains = 0;
+        let numberOfShares = 0;
 
         data.forEach((investment) => {
             const currency = investment.currency;
@@ -41,10 +43,17 @@ export class GetFinanceIndicatorsByUser implements UseCase {
             if (!isNaN(cost)) {
                 totalCosts = totalCosts + cost;
             }
+
+            const number_of_shares = parseFloat(investment.number_of_shares);
+
+            if (!isNaN(number_of_shares)) {
+                numberOfShares = numberOfShares + number_of_shares;
+            }
         });
 
-        const mediaGanancia = totalGains / data.length;
-        const mediaRiesgo = totalCosts / data.length;
+        summary.setValue("gains", totalGains / data.length);
+        summary.setValue("costs", totalCosts / data.length);
+        summary.setValue("shares", numberOfShares / data.length);
 
         return {
             distributionByCurrency: Object.fromEntries(
@@ -56,8 +65,7 @@ export class GetFinanceIndicatorsByUser implements UseCase {
             distributionByEntity: Object.fromEntries(
                 distributionByEntity.getValues(),
             ),
-            mediaGanancia,
-            mediaRiesgo,
+            summary: Object.fromEntries(summary.getValues()),
             data,
         };
     }

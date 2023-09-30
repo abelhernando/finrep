@@ -2,6 +2,11 @@
     "compilerOptions": {
         "jsx": "react"
     },
-    "include": ["."],
+    "include": [
+        ".",
+        "./src/**/*.ts", // Patrón para archivos TypeScript
+        "./src/**/*.tsx", // Patrón para archivos TypeScript con JSX
+        "./src/**/*.scss" // Patrón para archivos SCSS
+    ],
     "exclude": ["dist", "build", "node_modules"]
 }

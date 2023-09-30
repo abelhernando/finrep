@@ -1,0 +1,18 @@
+.container {
+    table {
+        border: 1px solid black;
+    }
+
+    thead {
+        font-weight: bold;
+    }
+
+    td {
+        border: 1px solid black;
+        padding: 10px;
+    }
+}
+
+.chart {
+    width: 400px;
+}
