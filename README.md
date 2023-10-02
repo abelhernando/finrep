@@ -54,7 +54,7 @@ Here's an overview of the project's folder structure:
 
 -   `backend/`: Hexagonal architecture backend code.
 -   `frontend/`: Frontend code built with Next.js.
--   `packages/` - `ui/`: Custom UI components or packages. - `config/`: Tailwind generic configuration.
+-   `packages/` <br> - `ui/`: Custom UI components or packages. <br> - `config/`: Tailwind generic configuration.
 -   `css-modules/`: CSS Modules for styling.
 
 Feel free to explore these directories for more details.
