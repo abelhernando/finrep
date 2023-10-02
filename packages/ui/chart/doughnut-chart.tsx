@@ -9,7 +9,6 @@ type DoughnutChartProps = {
 };
 
 export function DoughnutChart({ data }: DoughnutChartProps): JSX.Element {
-    console.log("data:", data);
     const total = Object.values(data).reduce((acc, curr) => acc + curr, 0);
     ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -42,16 +41,13 @@ export function DoughnutChart({ data }: DoughnutChartProps): JSX.Element {
         ],
     };
     const options = {
-        // datalabels: {
-        //     color: "white",
-        //     font: {
-        //         weight: "bold",
-        //     },
-        //     formatter: (value, context) => {
-        //         console.log("value:", value);
-        //         return `${value}%`;
-        //     },
-        // },
+        plugins: {
+            legend: {
+                labels: {
+                    color: "white",
+                },
+            },
+        },
     };
 
     return (

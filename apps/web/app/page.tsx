@@ -10,8 +10,8 @@ import {
 } from "ui";
 import styles from "./page.module.css";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import useScroll from "../hooks/scroller";
+import { getFinance } from "../services";
 
 export default function Page(): JSX.Element {
     const [data, setData] = useState<any>(null);
@@ -19,17 +19,7 @@ export default function Page(): JSX.Element {
 
     useEffect(() => {
         scrollTo({ top: 0, behavior: "smooth" });
-
-        const API_URL = "http://localhost:3001";
-        axios
-            .get<any[]>(`${API_URL}/finance`)
-            .then((response) => {
-                setData(response.data);
-                console.log("Data:", response.data);
-            })
-            .catch((error) => {
-                console.error("Error:", error);
-            });
+        getFinance().then((res) => setData(res));
     }, []);
 
     const fadeIn = scrollY > 399 ? 0 : 100;

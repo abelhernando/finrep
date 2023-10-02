@@ -2,12 +2,6 @@
     "compilerOptions": {
         "jsx": "react"
     },
-    "include": [
-        ".",
-        "./src/**/*.ts",
-        "./src/**/*.tsx",
-        "./src/**/*.css",
-        "./src/**/*.scss"
-    ],
+    "include": [".", "./src/**/*.ts", "./src/**/*.tsx", "./src/**/*.css"],
     "exclude": ["dist", "build", "node_modules"]
 }

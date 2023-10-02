@@ -1,81 +1,74 @@
-# Turborepo starter
+# FinTech Dashboard Reporting Project
 
-This is an official starter Turborepo.
+![Project Logo](assets/title-screen.png)
 
-## Using this example
+## Overview
 
-Run the following command:
+This is a financial reporting dashboard project built using Turborepo, Next.js, CSS Modules, a UI package, and Tailwind CSS. The project's backend is implemented with the Hexagonal architecture.
 
-```sh
-npx create-turbo@latest
+## Table of Contents
+
+-   [Installation](#installation)
+-   [Usage](#usage)
+-   [Folder Structure](#folder-structure)
+-   [Technologies Used](#technologies-used)
+-   [License](#license)
+
+## Installation
+
+To get started with this project, follow these steps:
+
+1. Clone the repository:
+
+    ```shell
+    git clone https://github.com/abelhernando/finrep.git
+    ```
+
+2. Navigate to the project folder:
+
+    ```shell
+    cd your-project
+    ```
+
+3. Install dependencies:
+
+    ```shell
+    npm install
+    ```
+
+4. Configure your backend (if applicable) following the instructions in the backend folder.
+
+## Usage
+
+To start the development server, run:
+
+```shell
+npm run dev
 ```
 
-## What's inside?
+Visit `http://localhost:3000` in your web browser to access the dashboard.
 
-This Turborepo includes the following packages/apps:
+## Folder Structure
 
-### Apps and Packages
+Here's an overview of the project's folder structure:
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `ui`: a stub React component library shared by both `web` and `docs` applications
-- `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `tsconfig`: `tsconfig.json`s used throughout the monorepo
+-   `backend/`: Hexagonal architecture backend code.
+-   `frontend/`: Frontend code built with Next.js.
+-   `packages/` - `ui/`: Custom UI components or packages. - `config/`: Tailwind generic configuration.
+-   `css-modules/`: CSS Modules for styling.
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+Feel free to explore these directories for more details.
 
-### Utilities
+## Technologies Used
 
-This Turborepo has some additional tools already setup for you:
+-   [Turborepo](https://turbo.build/repo/docs): Monorepo management.
+-   [Next.js](https://nextjs.org/): React framework for building web applications.
+-   [Tailwind CSS](https://tailwindcss.com/): Utility-first CSS framework.
+-   [CSS Modules](https://github.com/css-modules/css-modules): CSS scoping.
+-   [UI Package](https://github.com/abelhernando/finrep/tree/main/packages/ui): Custom UI components.
+-   [ChartJs](https://www.chartjs.org/docs/latest/): Chart components.
+-   [Hexagonal Architecture](https://link-to-hexagonal-architecture.com): Backend architecture.
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+## License
 
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm dev
-```
-
-### Remote Caching
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+This project is licensed under the [MIT License](LICENSE).
